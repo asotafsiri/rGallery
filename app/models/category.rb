@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# category model
 class Category < ApplicationRecord
-    has many :images
+  has_many :images
 end
