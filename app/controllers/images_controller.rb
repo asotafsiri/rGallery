@@ -6,12 +6,20 @@ class ImagesController < ApplicationController
   end
 
   def new
+    @image = Image.new
   end
 
   def edit
   end
 
   def create
+    @image = Image.new(image_params)
+    if @image.save
+      flash[:notice] = 'Image Created'
+      redirect_to images_path
+    else
+      render 'new'
+    end
   end
 
   def update
@@ -19,4 +27,9 @@ class ImagesController < ApplicationController
 
   def destroy
   end
+  private
+
+    def image_params
+      params.require(:image).permit(:image, :category_id, :image_title, :image_description, :image_file_size, :remote_image_url)
+    end
 end
