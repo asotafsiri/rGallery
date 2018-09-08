@@ -34,6 +34,10 @@
                 <li><%= link_to category.name, category_path(category.id) %></li>
                <% end %>
              </ul>
+             <ul class="nav navbar-nav pull-right">
+               <li><%= link_to "Upload Photo", upload_path %></li>
+               <li><%= link_to "Add Category", new_category_path %></li>
+             </ul>
             </nav>
             <div class="clear"></div>
           </div>
@@ -48,6 +52,13 @@
 ======================-->
 <section class="content gallery pad1"><div class="ic">More Website Templates @ TemplateMonster.com - July 30, 2014!</div>
   <div class="container">
+    <!--Alerts & Messages-->
+    <% if flash[:notice]%>
+      <div class="alert alert-success"><%= flash[:notice] %></div>
+    <% end %>
+    <% if flash[:alert]%>
+      <div class="alert alert-danger"><%= flash[:alert] %></div>
+    <% end %>
     <%= yield %>
   </div> <!-- /.container -->
 </section>
