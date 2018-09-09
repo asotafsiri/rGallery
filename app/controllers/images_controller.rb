@@ -1,5 +1,7 @@
 class ImagesController < ApplicationController
   def index
+    @images = Image.all
+    @categories = Category.all
   end
 
   def show
@@ -26,6 +28,11 @@ class ImagesController < ApplicationController
   end
 
   def destroy
+    @image = Image.find(params[:id])
+    @image.destroy
+
+    flash[:notice] = 'Image Removed'
+    redirect_to images_path
   end
 
   private
