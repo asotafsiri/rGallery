@@ -1,2 +1,26 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<div id="gellery">
+  <h2><%= @category.name%><small class="pull-right"><%= link_to "Edit", edit_category_path %></small><h2>
+  <% if @images.exists? %>
+    <% @images.each_slice(4) do |image| %>
+       <div class="row">
+         <% image.each do |image| %>
+           <div class="col-md-3">
+             <div class="gall_block">
+               <div class="maxheight">
+                 <a href="<%= image.image_url()%>" class="gall_item" class="photo-hover" data-lightbox="my-images"><%= image_tag image.image_url(:thumb) %></a>
+                 <div class="gall_bot">
+                   <div class="text1"><a href="#"><%= image.image_title %></a></div>
+                    <div class="text2"><%= image.image_description %></div>
+                   <br>
+                    <a href="#" class="btn">more</a><br/>
+                 </div>
+               </div>
+             </div>
+           </div>
+         <% end %>
+       </div>
+    <% end %>
+    <% else %>
+    <p> There are no images</p>
+  <% end %>
+</div>
